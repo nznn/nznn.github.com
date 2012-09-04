@@ -1,0 +1,569 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0055)http://www1.pconline.com.cn/pcedu/specialtopic/js917/1/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link rel="icon" href="love/yezi.ico" type="image/x-icon">
+<title>年年&&年资</title>
+<meta http-equiv="imagetoolbar" content="10款动感图片展示js代码-效果预览(1)">
+<style type="text/css">	html {
+		overflow: hidden;
+	}
+	body {
+		margin: 0px;
+		padding: 0px;
+		background: url(a74e55b4jw1dv23n1n9zaj.jpg );
+        filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+        -moz-background-size:100% 100%;
+        background-size:100% 100%;
+		width: 1366px;
+		height: 907.024px;
+	}
+	#imageFlow {
+		position: absolute;
+		width: 100%;
+		height: 80%;
+		left: 0%;
+		top: 10%;
+		background: transparent;
+	}
+	#imageFlow .diapo {
+		position: absolute;
+		left: -1000px;
+		cursor: pointer;
+		-ms-interpolation-mode: nearest-neighbor;
+	}
+	#imageFlow .link {
+		border: dotted #fff 1px;
+		margin-left: -1px;
+		margin-bottom: -1px;
+	}
+	#imageFlow .bank {
+		visibility: hidden;
+	}
+	#imageFlow .top {
+		position: absolute;
+		width: 100%;
+		height: 40%;
+		background: tansparent;
+	}
+	#imageFlow .text {
+		position: absolute;
+		left: 0px;
+		width: 100%;
+		bottom: 16%;
+		text-align: center;
+		color: #FFF;
+		font-family: verdana, arial, Helvetica, sans-serif;
+		z-index: 1000;
+	}
+	#imageFlow .title {
+		font-size: 0.9em;
+		font-weight: bold;
+	}
+	#imageFlow .legend {
+		font-size: 0.8em;
+	}
+	#imageFlow .scrollbar {
+		position: absolute;
+		left: 10%;
+		bottom: 10%;
+		width: 80%;
+		height: 16px;
+		z-index: 1000;
+	}
+	#imageFlow .track {
+		position: absolute;
+		left: 1%;
+		width: 98%;
+		height: 16px;
+		filter: alpha(opacity=30);
+		opacity: 0.3;
+	}
+	#imageFlow .arrow-left {
+		position: absolute;
+	}
+	#imageFlow .arrow-right {
+		position: absolute;
+		right: 0px;
+	}
+	#imageFlow .bar {
+		position: absolute;
+		height: 16px;
+		left: 25px;
+	}
+</style>
+
+<script type="text/javascript">
+
+function startTime()
+{
+var now = new Date();
+var now_time = now.getTime()
+var start = new Date()
+start.setFullYear(2011,6,22)
+start.setHours(19,0,0)
+var start_time = start.getTime()
+var time = now_time - start_time
+var minutes = 1000*60
+var hours = minutes*60
+var days = hours*24
+var years = days*365
+var live_days = parseInt(time/days)
+var live_hours = parseInt((time%days)/hours)
+var live_minutes = parseInt((time%days)%hours/minutes)
+var live_seconds = parseInt((time%days)%hours%minutes/1000)
+// add a zero in front of numbers<10
+//m=checkTime(m)
+//s=checkTime(s)
+document.getElementById('digit1').innerHTML=live_days
+//+"天"+live_hours+"小时"+live_minutes+"分"+live_seconds+"秒"
+document.getElementById('digit2').innerHTML=live_hours
+document.getElementById('digit3').innerHTML=live_minutes
+document.getElementById('digit4').innerHTML=live_seconds
+document.getElementById('digit1').style.fontSize="40px"
+document.getElementById('digit1').style.fontFamily="Comic Sans MS, cursive"
+document.getElementById('digit1').style.color="#99CCCC"
+document.getElementById('digit2').style.fontSize="40px"
+document.getElementById('digit2').style.fontFamily="Comic Sans MS, cursive"
+document.getElementById('digit2').style.color="#99CCCC"
+document.getElementById('digit3').style.fontSize="40px"
+document.getElementById('digit3').style.fontFamily="Comic Sans MS, cursive"
+document.getElementById('digit3').style.color="#99CCCC"
+document.getElementById('digit4').style.fontSize="40px"
+document.getElementById('digit4').style.fontFamily="Comic Sans MS, cursive"
+document.getElementById('digit4').style.color="#99CCCC"
+t=setTimeout('startTime()',500)
+}
+
+function checkTime(i)
+{
+if (i<10) 
+  {i="0" + i}
+  return i
+}
+var imf = function () {
+	var lf = 0;
+	var instances = [];
+	function getElementsByClass (object, tag, className) {
+		var o = object.getElementsByTagName(tag);
+		for ( var i = 0, n = o.length, ret = []; i < n; i++)
+			if (o[i].className == className) ret.push(o[i]);
+		if (ret.length == 1) ret = ret[0];
+		return ret;
+	}
+	function addEvent (o, e, f) {
+		if (window.addEventListener) o.addEventListener(e, f, false);
+		else if (window.attachEvent) r = o.attachEvent('on' + e, f);
+	}
+	function createReflexion (cont, img) {
+		var flx = false;
+		if (document.createElement("canvas").getContext) {
+			flx = document.createElement("canvas");
+			flx.width = img.width;
+			flx.height = img.height;
+			var context = flx.getContext("2d");
+			context.translate(0, img.height);
+			context.scale(1, -1);
+			context.drawImage(img, 0, 0, img.width, img.height);
+			context.globalCompositeOperation = "destination-out";
+			var gradient = context.createLinearGradient(0, 0, 0, img.height * 2);
+			gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+			gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
+			context.fillStyle = gradient;
+			context.fillRect(0, 0, img.width, img.height * 2);
+		} else {
+			/* ---- DXImageTransform ---- */
+			flx     = document.createElement('img');
+			flx.src = img.src;
+			flx.style.filter = 'flipv progid:DXImageTransform.Microsoft.Alpha(' +
+			                   'opacity=50, style=1, finishOpacity=0, startx=0, starty=0, finishx=0, finishy=' +
+							   (img.height * .25) + ')';
+		}
+		/* ---- insert Reflexion ---- */
+		flx.style.position = 'absolute';
+		flx.style.left     = '-1000px';
+		cont.appendChild(flx);
+		return flx;
+	}
+	/* //////////// ==== ImageFlow Constructor ==== //////////// */
+	function ImageFlow(oCont, size, zoom, border) {
+		this.diapos     = [];
+		this.scr        = false;
+		this.size       = size;
+		this.zoom       = zoom;
+		this.bdw        = border;
+		this.oCont      = oCont;
+		this.oc         = document.getElementById(oCont);
+		this.scrollbar  = getElementsByClass(this.oc,   'div', 'scrollbar');
+		this.text       = getElementsByClass(this.oc,   'div', 'text');
+		this.title      = getElementsByClass(this.text, 'div', 'title');
+		this.legend     = getElementsByClass(this.text, 'div', 'legend');
+		this.bar        = getElementsByClass(this.oc,   'img', 'bar');
+		this.arL        = getElementsByClass(this.oc,   'img', 'arrow-left');
+		this.arR        = getElementsByClass(this.oc,   'img', 'arrow-right');
+		this.bw         = this.bar.width;
+		this.alw        = this.arL.width - 5;
+		this.arw        = this.arR.width - 5;
+		this.bar.parent = this.oc.parent  = this;
+		this.arL.parent = this.arR.parent = this;
+		this.view       = this.back       = -1;
+		this.resize();
+		this.oc.onselectstart = function () { return false; }
+		/* ---- create images ---- */
+		var img   = getElementsByClass(this.oc, 'div', 'bank').getElementsByTagName('a');
+		this.NF = img.length;
+		for (var i = 0, o; o = img[i]; i++) {
+			this.diapos[i] = new Diapo(this, i,
+										o.rel,
+										o.title || '- ' + i + ' -',
+										o.innerHTML || o.rel,
+										o.href || '',
+										o.target || '_self'
+			);
+		}
+		/* ==== add mouse wheel events ==== */
+		if (window.addEventListener)
+			this.oc.addEventListener('DOMMouseScroll', function(e) {
+				this.parent.scroll(-e.detail);
+			}, false);
+		else this.oc.onmousewheel = function () {
+			this.parent.scroll(event.wheelDelta);
+		}
+		/* ==== scrollbar drag N drop ==== */
+		this.bar.onmousedown = function (e) {
+			if (!e) e = window.event;
+			var scl = e.screenX - this.offsetLeft;
+			var self = this.parent;
+			/* ---- move bar ---- */
+			this.parent.oc.onmousemove = function (e) {
+				if (!e) e = window.event;
+				self.bar.style.left = Math.round(Math.min((self.ws - self.arw - self.bw), Math.max(self.alw, e.screenX - scl))) + 'px';
+				self.view = Math.round(((e.screenX - scl) ) / (self.ws - self.alw - self.arw - self.bw) * self.NF);
+				if (self.view != self.back) self.calc();
+				return false;
+			}
+			/* ---- release scrollbar ---- */
+			this.parent.oc.onmouseup = function (e) {
+				self.oc.onmousemove = null;
+				return false;
+			}
+			return false;
+		}
+		/* ==== right arrow ==== */
+		this.arR.onclick = this.arR.ondblclick = function () {
+			if (this.parent.view < this.parent.NF - 1)
+				this.parent.calc(1);
+		}
+		/* ==== Left arrow ==== */
+		this.arL.onclick = this.arL.ondblclick = function () {
+			if (this.parent.view > 0)
+				this.parent.calc(-1);
+		}
+	}
+	/* //////////// ==== ImageFlow prototype ==== //////////// */
+	ImageFlow.prototype = {
+		/* ==== targets ==== */
+		calc : function (inc) {
+			if (inc) this.view += inc;
+			var tw = 0;
+			var lw = 0;
+			var o = this.diapos[this.view];
+			if (o && o.loaded) {
+				/* ---- reset ---- */
+				var ob = this.diapos[this.back];
+				if (ob && ob != o) {
+					ob.img.className = 'diapo';
+					ob.z1 = 1;
+				}
+				/* ---- update legend ---- */
+				this.title.replaceChild(document.createTextNode(o.title), this.title.firstChild);
+				this.legend.replaceChild(document.createTextNode(o.text), this.legend.firstChild);
+				/* ---- update hyperlink ---- */
+				if (o.url) {
+					o.img.className = 'diapo link';
+					window.status = 'hyperlink: ' + o.url;
+				} else {
+					o.img.className = 'diapo';
+					window.status = '';
+				}
+				/* ---- calculate target sizes & positions ---- */
+				o.w1 = Math.min(o.iw, this.wh * .5) * o.z1;
+				var x0 = o.x1 = (this.wh * .5) - (o.w1 * .5);
+				var x = x0 + o.w1 + this.bdw;
+				for (var i = this.view + 1, o; o = this.diapos[i]; i++) {
+					if (o.loaded) {
+						o.x1 = x;
+						o.w1 = (this.ht / o.r) * this.size;
+						x   += o.w1 + this.bdw;
+						tw  += o.w1 + this.bdw;
+					}
+				}
+				x = x0 - this.bdw;
+				for (var i = this.view - 1, o; o = this.diapos[i]; i--) {
+					if (o.loaded) {
+						o.w1 = (this.ht / o.r) * this.size;
+						o.x1 = x - o.w1;
+						x   -= o.w1 + this.bdw;
+						tw  += o.w1 + this.bdw;
+						lw  += o.w1 + this.bdw;
+					}
+				}
+				/* ---- move scrollbar ---- */
+				if (!this.scr && tw) {
+					var r = (this.ws - this.alw - this.arw - this.bw) / tw;
+					this.bar.style.left = Math.round(this.alw + lw * r) + 'px';
+				}
+				/* ---- save preview view ---- */
+				this.back = this.view;
+			}
+		},
+		/* ==== mousewheel scrolling ==== */
+		scroll : function (sc) {
+			if (sc < 0) {
+				if (this.view < this.NF - 1) this.calc(1);
+			} else {
+				if (this.view > 0) this.calc(-1);
+			}
+		},
+		/* ==== resize  ==== */
+		resize : function () {
+			this.wh = this.oc.clientWidth;
+			this.ht = this.oc.clientHeight;
+			this.ws = this.scrollbar.offsetWidth;
+			this.calc();
+			this.run(true);
+		},
+		/* ==== move all images  ==== */
+		run : function (res) {
+			var i = this.NF;
+			while (i--) this.diapos[i].move(res);
+		}
+	}
+	/* //////////// ==== Diapo Constructor ==== //////////// */
+	Diapo = function (parent, N, src, title, text, url, target) {
+		this.parent        = parent;
+		this.loaded        = false;
+		this.title         = title;
+		this.text          = text;
+		this.url           = url;
+		this.target        = target;
+		this.N             = N;
+		this.img           = document.createElement('img');
+		this.img.src       = src;
+		this.img.parent    = this;
+		this.img.className = 'diapo';
+		this.x0            = this.parent.oc.clientWidth;
+		this.x1            = this.x0;
+		this.w0            = 0;
+		this.w1            = 0;
+		this.z1            = 1;
+		this.img.parent    = this;
+		this.img.onclick   = function() { this.parent.click(); }
+		this.parent.oc.appendChild(this.img);
+		/* ---- display external link ---- */
+		if (url) {
+			this.img.onmouseover = function () { this.className = 'diapo link';	}
+			this.img.onmouseout  = function () { this.className = 'diapo'; }
+		}
+	}
+	/* //////////// ==== Diapo prototype ==== //////////// */
+	Diapo.prototype = {
+		/* ==== HTML rendering ==== */
+		move : function (res) {
+			if (this.loaded) {
+				var sx = this.x1 - this.x0;
+				var sw = this.w1 - this.w0;
+				if (Math.abs(sx) > 2 || Math.abs(sw) > 2 || res) {
+					/* ---- paint only when moving ---- */
+					this.x0 += sx * .1;
+					this.w0 += sw * .1;
+					if (this.x0 < this.parent.wh && this.x0 + this.w0 > 0) {
+						/* ---- paint only visible images ---- */
+						this.visible = true;
+						var o = this.img.style;
+						var h = this.w0 * this.r;
+						/* ---- diapo ---- */
+						o.left   = Math.round(this.x0) + 'px';
+						o.bottom = Math.floor(this.parent.ht * .25) + 'px';
+						o.width  = Math.round(this.w0) + 'px';
+						o.height = Math.round(h) + 'px';
+						/* ---- reflexion ---- */
+						if (this.flx) {
+							var o = this.flx.style;
+							o.left   = Math.round(this.x0) + 'px';
+							o.top    = Math.ceil(this.parent.ht * .75 + 1) + 'px';
+							o.width  = Math.round(this.w0) + 'px';
+							o.height = Math.round(h) + 'px';
+						}
+					} else {
+						/* ---- disable invisible images ---- */
+						if (this.visible) {
+							this.visible = false;
+							this.img.style.width = '0px';
+							if (this.flx) this.flx.style.width = '0px';
+						}
+					}
+				}
+			} else {
+				/* ==== image onload ==== */
+				if (this.img.complete && this.img.width) {
+					/* ---- get size image ---- */
+					this.iw     = this.img.width;
+					this.ih     = this.img.height;
+					this.r      = this.ih / this.iw;
+					this.loaded = true;
+					/* ---- create reflexion ---- */
+					this.flx    = createReflexion(this.parent.oc, this.img);
+					if (this.parent.view < 0) this.parent.view = this.N;
+					this.parent.calc();
+				}
+			}
+		},
+		/* ==== diapo onclick ==== */
+		click : function () {
+			if (this.parent.view == this.N) {
+				/* ---- click on zoomed diapo ---- */
+				if (this.url) {
+					/* ---- open hyperlink ---- */
+					window.open(this.url, this.target);
+				} else {
+					/* ---- zoom in/out ---- */
+					this.z1 = this.z1 == 1 ? this.parent.zoom : 1;
+					this.parent.calc();
+				}
+			} else {
+				/* ---- select diapo ---- */
+				this.parent.view = this.N;
+				this.parent.calc();
+			}
+			return false;
+		}
+	}
+	/* //////////// ==== public methods ==== //////////// */
+	return {
+		/* ==== initialize script ==== */
+		create : function (div, size, zoom, border) {
+			/* ---- instanciate imageFlow ---- */
+			var load = function () {
+				var loaded = false;
+				var i = instances.length;
+				while (i--) if (instances[i].oCont == div) loaded = true;
+				if (!loaded) {
+					/* ---- push new imageFlow instance ---- */
+					instances.push(
+						new ImageFlow(div, size, zoom, border)
+					);
+					/* ---- init script (once) ---- */
+					if (!imf.initialized) {
+						imf.initialized = true;
+						/* ---- window resize event ---- */
+						addEvent(window, 'resize', function () {
+							var i = instances.length;
+							while (i--) instances[i].resize();
+						});
+						/* ---- stop drag N drop ---- */
+						addEvent(document.getElementById(div), 'mouseout', function (e) {
+							if (!e) e = window.event;
+							var tg = e.relatedTarget || e.toElement;
+							if (tg && tg.tagName == 'HTML') {
+								var i = instances.length;
+								while (i--) instances[i].oc.onmousemove = null;
+							}
+							return false;
+						});
+						/* ---- set interval loop ---- */
+						setInterval(function () {
+							var i = instances.length;
+							while (i--) instances[i].run();
+						}, 16);
+					}
+				}
+			}
+			/* ---- window onload event ---- */
+			addEvent(window, 'load', function () { load(); });
+		}
+	}
+}();
+
+/* ==== create imageFlow ==== */
+//          div ID    , size, zoom, border
+imf.create("imageFlow", 0.15, 1.5, 10);
+
+</script>
+<style type="text/css"></style></head>
+
+<body onload="startTime()">
+ <div id="p-logo"><a rel="Wiki.png"  title="首页"></a><img src="Wiki.png"></div>
+<div id="txt" style="position:absolute; right:100px; top:35px;">
+<span id="digit1">409 </span> <font color="#FF0000" face="Comic Sans MS, cursive" size="+1">days </font> <span id="digit2">12</span> <font color="#FF6600" face="Comic Sans MS, cursive" size="+1">hours </font> <span id="digit3">57</span> <font color="#FFFF00" face="Comic Sans MS, cursive" size="+1">minutes </font> <span id="digit4">40</span> <font color="#66FF66"  face="Comic Sans MS, cursive" size="+1">seconds 
+</div>
+	<div id="imageFlow">
+  <div class="top"></div>
+		<div class="bank">
+			
+            <a rel="love/a二中.jpg" title="故事开始的地方" target="_blank"> 在这之前，一切都平静的过着，直到在这里，我遇见了。 距离：100米 时间：2006年</a>
+            <a rel="love/a中考.jpg" title="毕业了" target="_blank"> 时间总是过得飞快，一切都没有开始，我们便已迈入了毕业季。 距离：100米 时间2007年。</a>
+            <a rel="love/a夏天.jpg" title="炎热的暑假" target="_blank"> -你当时为什么要走啊？-呵呵，因为好多好多事情啊。-哦，那我是不是原因之一啊？-你？哈哈</a>
+            <a rel="love/b临川一中.jpg" title="你的高中" target="_blank"> 临一是你最怀念的地方</a>
+            <a rel="love/b那些同学.JPG" title="那些同学" target="_blank"> 临一有你最爱最爱的同学，老大，瑶瑶，朱琪...</a>
+            <a rel="love/b杨老师.JPG" title="可爱的老师" target="_blank"> 还有你可亲可敬的杨老师，哈哈，我也就认识他了，杨帅锅</a>
+            <a rel="love/b余干中学.jpg" title="我的高中" target="_blank"> 以为你会来的，结果让我一个人在这里呆了3年。 距离：142公里 时间：2007年</a>
+            <a rel="love/c大学夏天.jpg" title="日子" target="_blank"> 生活嘛，就是在不断地失望，不断地希望着，你说对吧？嘻嘻</a>
+            <a rel="love/b高考.JPG" title="高考" target="_blank"> 高考压力好大，我睡眠不好，压力山大-_-#</a>
+            <a rel="love/c.jpg" title="大学" target="_blank"> 知道吗？高考志愿真的好想填北京或者上海啊，不过武汉也还行，就是好热，呵呵。 时间：2010年 距离：471公里</a> 
+            <a rel="love/b刺绣.jpg" title="你也毕业了" target="_blank"> 这个是送给杨帅锅的礼物，呵呵，真的很好看</a>
+            <a rel="love/b栀子花.jpg" title="你的暑假" target="_blank"> 像花一样灿烂开放的暑假</a>
+            <a rel="love/c苏州大学.JPG" title="大学" target="_blank"> 苏州真是一个美丽的地方，盛产美女，嘻嘻 距离：750公里 时间：2011年</a>
+            <a rel="love/c大学朋友.JPG" title="新的朋友" target="_blank"> 爱丽，丽丽，哈哈，我又认识了两个漂亮的姑娘。</a>
+            <a rel="love/c我床上.jpg" title="开心" target="_blank"> 快乐的日子总是有的</a>
+            <a rel="love/c喻家山上的我.jpg" title="喻家山上" target="_blank"> 而我呢，你看，这是在学校后面的山上定向越野呢。</a>
+            <a rel="love/c东湖.jpg" title="东湖" target="_blank"> 知道东湖吗？杭州有西湖，武汉有东湖，没有想到吧，在武汉这样一座“粗狂”的城市里面居然会有一个这样温柔的湖</a>
+            <a rel="love/c喻家山的景色.jpg" title="看见了吗？" target="_blank"> 这是从喻家山往后看的，以后带你爬哈...</a>
+            <a rel="love/c教堂.jpg" title="独墅湖边的教堂" target="_blank"> 我听你说，独墅湖旁边的白鹭园好美好美，白鹭园里面的还有一座庄严的教堂</a>
+            <a rel="love/c叶子.JPG" title="四叶草" target="_blank"> -你知道四叶草的花语吗？ -我知道啊，第一片叶子代表真爱，第二片叶子代表健康，第三片叶子代表名誉，第四片叶子代表幸福 -那你知道我为什么要摘它吗？ -因为，因为...为了把第一片叶子给我，哈哈哈... </a>
+            <a rel="love/c大雪.jpg" title="到处都白了" target="_blank"> 武汉下雪了，顿时觉得凉快了，呵呵</a>
+            <a rel="love/c冷.JPG" title="苏州" target="_blank"> 苏州好美啊</a>
+            <a rel="love/c书包雪.jpg" title="我们是另外一种格调" target="_blank"> 看看我们背书包的女生，我们学校是巾帼不让须眉啊 </a>
+            <a rel="love/c你知道的.jpg" title="华中可基嘛" target="_blank"> 嘻嘻，大千世界，无奇不有嘛...</a>
+            <a rel="love/c独墅湖.jpg" title="到了" target="_blank"> 我说过，我要亲自去的 时间：2011年 距离：0</a>
+                                
+            <a rel="love/c在蛋蛋上面.jpg" title="炳麟图书馆" target="_blank"> 你说，咱们现在站的地方像不像一个巨蛋啊？ 距离：0 时间：2011年</a>
+            <a rel="love/c柳树湖水.jpg" title="柳树" target="_blank"> 爱极了这柳树，幸好你也在  距离：0 时间：2011年</a>
+            <a rel="love/c教堂呵呵.jpg" title="亲眼见到了" target="_blank"> 我说道做到，我说了，我一定会来的  距离：0 时间：2011年</a>
+            <a rel="love/c还记得项链吗？.jpg" title="这个" target="_blank"> 还记得吗？ 距离：0 时间：2011年</a>
+            
+             <a rel="love/c家里的冬天.jpg" title="在家的日子" target="_blank"> 在家的日子总是很短暂的</a>
+             <a rel="love/c叉叉.jpg" title="这个叉子" target="_blank"> 我找了 距离：750公里 时间：2012年</a>
+            
+            <a rel="love/c书店.JPG" title="苏州" target="_blank"> 我又回来了 距离：0 时间：2012年</a>
+                      
+            <a rel="love/c嘻嘻.JPG" title="立正！" target="_blank"> 抱树！嘻嘻 距离：0 时间：2012年</a>
+            <a rel="love/c小吃街.JPG" title="好吃的" target="_blank"> 两个吃货一起准没有好事，呵呵 距离：0 时间：2012年</a>
+            <a rel="love/c回武汉的车.JPG" title="卧铺" target="_blank"> 我走了，么么 距离：730公里 时间：2012年</a>
+            
+            
+            
+            <a rel="love/ecc0680b545d1b59a90447eaf8fb2a34.jpg" title="知道吗？" target="_blank"> 人生就是一个接着一个站点</a>
+            <a rel="love/孤单.JPG" title="既然是旅程" target="_blank"> 难免有几个站点得是孤单的一个人</a>
+                        
+            
+            <a rel="love/c在一起了.JPG" title="但是" target="_blank"> 最后我会在一起的，亲爱的，你说对吗？^_^</a>
+
+
+
+		</div>
+
+		
+  <div class="text"> 
+    <div class="title">^_^</div>
+    <div class="legend">^_^</div>
+  </div>
+		
+  <div class="scrollbar"> <img class="track" src="./love/sb.gif" alt=""> <img class="arrow-left" src="./love/sl.gif" alt=""> 
+    <img class="arrow-right" src="./love/sr.gif" alt=""> <img class="bar" src="./love/sc.gif" alt="" style="left: 768px; "> 
+  </div>
+	<canvas width="499" height="334" style="position: absolute; left: -110px; top: 394px; width: 0px; height: 78px; "></canvas><canvas width="500" height="375" style="position: absolute; left: -97px; top: 394px; width: 0px; height: 78px; "></canvas><canvas width="500" height="333" style="position: absolute; left: -117px; top: 394px; width: 0px; height: 78px; "></canvas><canvas width="334" height="500" style="position: absolute; left: -49px; top: 394px; width: 0px; height: 78px; "></canvas><canvas width="500" height="333" style="position: absolute; left: -117px; top: 394px; width: 0px; height: 78px; "></canvas><canvas width="500" height="333" style="position: absolute; left: 1144px; top: 394px; width: 118px; height: 78px; "></canvas><canvas width="500" height="500" style="position: absolute; left: 1056px; top: 394px; width: 78px; height: 78px; "></canvas><canvas width="500" height="375" style="position: absolute; left: 941px; top: 394px; width: 106px; height: 80px; "></canvas><canvas width="500" height="335" style="position: absolute; left: 432px; top: 394px; width: 498px; height: 334px; "></canvas><canvas width="500" height="375" style="position: absolute; left: 317px; top: 394px; width: 105px; height: 78px; "></canvas><canvas width="359" height="500" style="position: absolute; left: 250px; top: 394px; width: 56px; height: 78px; "></canvas><canvas width="500" height="357" style="position: absolute; left: 130px; top: 394px; width: 110px; height: 78px; "></canvas><canvas width="365" height="500" style="position: absolute; left: 63px; top: 394px; width: 57px; height: 78px; "></canvas><canvas width="500" height="255" style="position: absolute; left: -101px; top: 394px; width: 154px; height: 78px; "></canvas></div>
+	 
+
+
+
+</body></html>
