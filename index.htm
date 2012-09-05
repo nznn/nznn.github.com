@@ -4,13 +4,18 @@
 <link rel="icon" href="love/yezi.ico" type="image/x-icon">
 <title>年年&&年子</title>
 <meta http-equiv="imagetoolbar" content="年年和年子">
-<style type="text/css">	html {
+<style type="text/css">	
+	.bg1 {
+	bi:url(love/7411.jpg);
+	}	
+
+	html {
 		overflow: hidden;
 	}
 	body {
 		margin: 0px;
 		padding: 0px;
-		background: url(http://ww1.sinaimg.cn/large/a74e55b4jw1dv23n1n9zaj.jpg);
+		
         filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
         -moz-background-size:100% 100%;
         background-size:100% 100%;
@@ -93,7 +98,6 @@
 </style>
 
 <script type="text/javascript">
-
 function startTime()
 {
 var now = new Date();
@@ -132,6 +136,13 @@ document.getElementById('digit4').style.fontSize="40px"
 document.getElementById('digit4').style.fontFamily="Comic Sans MS, cursive"
 document.getElementById('digit4').style.color="#99CCCC"
 t=setTimeout('startTime()',500)
+}
+function changeStyle()
+{
+var src=["love/7798.jpg","http://ww1.sinaimg.cn/large/a74e55b4jw1dv23n1n9zaj.jpg","love/7804.jpg","love/10660.jpg","love/14162.jpg"];
+
+bkpic = src[parseInt(Math.random()*10,10)%5];
+document.body.style.backgroundImage= "url("+bkpic+")";
 }
 
 function checkTime(i)
@@ -491,7 +502,7 @@ imf.create("imageFlow", 0.15, 1.5, 10);
 </script>
 <style type="text/css"></style></head>
 
-<body onload="startTime()">
+<body onload="startTime(), changeStyle()" id="Body">
  <div id="p-logo"><a rel="love/Wiki.png"  title="首页"></a><img src="love/Wiki.png"></div>
 <div id="txt" style="position:absolute; right:100px; top:35px;">
 <span id="digit1">409 </span> <font color="#FF0000" face="Comic Sans MS, cursive" size="+1">days </font> <span id="digit2">12</span> <font color="#FF6600" face="Comic Sans MS, cursive" size="+1">hours </font> <span id="digit3">57</span> <font color="#FFFF00" face="Comic Sans MS, cursive" size="+1">minutes </font> <span id="digit4">40</span> <font color="#66FF66"  face="Comic Sans MS, cursive" size="+1">seconds 
